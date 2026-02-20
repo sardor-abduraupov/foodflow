@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>FoodFlow</title>
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+        background-color: #f0f2f5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      .dark body {
+        background-color: #050505;
+      }
+
+      /* --- LIQUID GLASS SYSTEM (GLOBAL) --- */
+      .liquid-glass {
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.22)),
+          radial-gradient(circle at 0% 0%, rgba(129, 198, 255, 0.16), transparent 48%),
+          radial-gradient(circle at 100% 100%, rgba(205, 121, 255, 0.14), transparent 46%);
+        backdrop-filter: blur(24px) saturate(165%);
+        -webkit-backdrop-filter: blur(24px) saturate(165%);
+        border: 1px solid rgba(255, 255, 255, 0.44);
+        box-shadow:
+          0 30px 70px -42px rgba(15, 23, 42, 0.85),
+          0 18px 36px -30px rgba(15, 23, 42, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.62);
+      }
+
+      .dark .liquid-glass {
+        background:
+          linear-gradient(135deg, rgba(18, 22, 40, 0.68), rgba(7, 10, 23, 0.4)),
+          radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), transparent 52%),
+          radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.2), transparent 52%);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow:
+          0 32px 72px -38px rgba(0, 0, 0, 0.95),
+          0 20px 40px -30px rgba(0, 0, 0, 0.65),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      }
+
+      .liquid-bubble {
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.28));
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+          0 14px 26px -16px rgba(15, 23, 42, 0.65),
+          inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      }
+
+      .dark .liquid-bubble {
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow:
+          0 16px 28px -16px rgba(0, 0, 0, 0.85),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+
+      .liquid-concave {
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.08));
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow:
+          inset 0 2px 6px rgba(0, 0, 0, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .dark .liquid-concave {
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.28));
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+          inset 0 2px 8px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      /* Typography adjustments for glass */
+      .text-glass {
+        text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+      }
+      .dark .text-glass {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      }
+
+      /* Active State for Liquid Buttons: "Pressed" Effect */
+      .liquid-bubble:active, .liquid-glass:active {
+        transform: scale(0.96);
+        box-shadow: 
+          0 2px 10px rgba(0, 0, 0, 0.05),
+          inset 0 2px 5px rgba(0,0,0,0.05);
+      }
+
+      .stagger-1 { animation-delay: 50ms; }
+      .stagger-2 { animation-delay: 100ms; }
+      .stagger-3 { animation-delay: 150ms; }
+      .stagger-4 { animation-delay: 200ms; }
+      .stagger-5 { animation-delay: 250ms; }
+
+      @keyframes ffLiquidTopRight {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1) rotate(-1deg);
+          border-radius: 56% 44% 46% 54% / 62% 58% 42% 38%;
+        }
+        33% {
+          transform: translate3d(-46px, 22px, 0) scale(1.1) rotate(2deg);
+          border-radius: 64% 36% 52% 48% / 56% 66% 34% 44%;
+        }
+        66% {
+          transform: translate3d(24px, -14px, 0) scale(1.05) rotate(-2.4deg);
+          border-radius: 48% 52% 41% 59% / 63% 47% 53% 37%;
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(1) rotate(-1deg);
+          border-radius: 56% 44% 46% 54% / 62% 58% 42% 38%;
+        }
+      }
+
+      @keyframes ffLiquidLeftRibbon {
+        0% {
+          transform: translate3d(0, 0, 0) scaleY(1) rotate(0deg);
+          border-radius: 46% 54% 40% 60% / 60% 40% 62% 38%;
+        }
+        40% {
+          transform: translate3d(16px, -22px, 0) scaleY(1.06) rotate(1.2deg);
+          border-radius: 50% 50% 36% 64% / 54% 46% 64% 36%;
+        }
+        75% {
+          transform: translate3d(-12px, 15px, 0) scaleY(1.03) rotate(-1.4deg);
+          border-radius: 42% 58% 46% 54% / 62% 38% 58% 42%;
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scaleY(1) rotate(0deg);
+          border-radius: 46% 54% 40% 60% / 60% 40% 62% 38%;
+        }
+      }
+
+      @keyframes ffLiquidRightBlob {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          border-radius: 52% 48% 44% 56% / 46% 58% 42% 54%;
+        }
+        35% {
+          transform: translate3d(-30px, 18px, 0) scale(1.07);
+          border-radius: 44% 56% 38% 62% / 52% 66% 34% 48%;
+        }
+        70% {
+          transform: translate3d(18px, -10px, 0) scale(1.04);
+          border-radius: 58% 42% 52% 48% / 44% 54% 46% 56%;
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+          border-radius: 52% 48% 44% 56% / 46% 58% 42% 54%;
+        }
+      }
+
+      @keyframes ffLiquidBottomWave {
+        0% {
+          transform: translate3d(-50%, 0, 0) scale(1) rotate(0deg);
+          border-radius: 58% 42% 0% 0% / 100% 100% 0% 0%;
+        }
+        45% {
+          transform: translate3d(-50%, -18px, 0) scale(1.08) rotate(0.8deg);
+          border-radius: 65% 35% 0% 0% / 100% 100% 0% 0%;
+        }
+        80% {
+          transform: translate3d(-50%, 10px, 0) scale(1.03) rotate(-0.9deg);
+          border-radius: 52% 48% 0% 0% / 100% 100% 0% 0%;
+        }
+        100% {
+          transform: translate3d(-50%, 0, 0) scale(1) rotate(0deg);
+          border-radius: 58% 42% 0% 0% / 100% 100% 0% 0%;
+        }
+      }
+
+      @keyframes ffLeftLinePulse {
+        0%, 100% {
+          opacity: 0.45;
+          box-shadow: 0 0 0 rgba(34, 211, 238, 0);
+        }
+        50% {
+          opacity: 0.95;
+          box-shadow: 0 0 14px rgba(34, 211, 238, 0.7);
+        }
+      }
+
+      @keyframes ffAmbientFloatA {
+        0%, 100% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate3d(38px, -14px, 0) scale(1.14);
+          opacity: 1;
+        }
+      }
+
+      @keyframes ffAmbientFloatB {
+        0%, 100% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate3d(-28px, 18px, 0) scale(1.12);
+          opacity: 0.95;
+        }
+      }
+
+      @keyframes ffCorePulseA {
+        0%, 100% {
+          transform: translate3d(-50%, -50%, 0) scale(0.94);
+          opacity: 0.34;
+        }
+        50% {
+          transform: translate3d(-50%, -50%, 0) scale(1.12);
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes ffCorePulseB {
+        0%, 100% {
+          transform: translate3d(-50%, -50%, 0) scale(0.9);
+          opacity: 0.24;
+        }
+        50% {
+          transform: translate3d(-50%, -50%, 0) scale(1.08);
+          opacity: 0.5;
+        }
+      }
+
+      @keyframes ffChromaticPulse {
+        0%, 100% {
+          filter: saturate(100%) brightness(100%);
+        }
+        50% {
+          filter: saturate(138%) brightness(112%);
+        }
+      }
+
+      @keyframes ffAuroraSweep {
+        0% {
+          transform: translateX(-150%) skewX(-16deg);
+          opacity: 0;
+        }
+        22% {
+          opacity: 0.36;
+        }
+        52% {
+          opacity: 0.2;
+        }
+        100% {
+          transform: translateX(220%) skewX(-16deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes ffOrbitSpin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      @keyframes ffOrbitSpinReverse {
+        from {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+      }
+
+      @keyframes ffOrbitDotPulse {
+        0%, 100% {
+          transform: scale(0.82);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 1;
+        }
+      }
+
+      @keyframes ffCardBeam {
+        0% {
+          transform: translateX(-150%) skewX(-14deg);
+          opacity: 0.2;
+        }
+        20% {
+          opacity: 0.6;
+        }
+        80% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateX(240%) skewX(-14deg);
+          opacity: 0.2;
+        }
+      }
+
+      .ff-liquid-top-right,
+      .ff-liquid-left-ribbon,
+      .ff-liquid-right-blob,
+      .ff-liquid-bottom-wave,
+      .ff-liquid-ambient,
+      .ff-liquid-left-line,
+      .ff-liquid-core,
+      .ff-liquid-orbit,
+      .ff-liquid-orbit-dot,
+      .ff-liquid-aurora-sweep,
+      .ff-liquid-auth-focus {
+        will-change: transform, opacity;
+      }
+
+      .ff-liquid-top-right {
+        animation: ffLiquidTopRight 14s ease-in-out infinite, ffChromaticPulse 9s ease-in-out infinite;
+      }
+
+      .ff-liquid-left-ribbon {
+        animation: ffLiquidLeftRibbon 20s ease-in-out infinite;
+      }
+
+      .ff-liquid-right-blob {
+        animation: ffLiquidRightBlob 13s ease-in-out infinite, ffChromaticPulse 10s ease-in-out infinite;
+      }
+
+      .ff-liquid-bottom-wave {
+        animation: ffLiquidBottomWave 11s ease-in-out infinite, ffChromaticPulse 12s ease-in-out infinite;
+      }
+
+      .ff-liquid-left-line {
+        animation: ffLeftLinePulse 5.5s ease-in-out infinite;
+      }
+
+      .ff-liquid-ambient-a {
+        animation: ffAmbientFloatA 8s ease-in-out infinite;
+      }
+
+      .ff-liquid-ambient-b {
+        animation: ffAmbientFloatB 9.5s ease-in-out infinite;
+      }
+
+      .ff-liquid-core-a {
+        animation: ffCorePulseA 8.5s ease-in-out infinite;
+      }
+
+      .ff-liquid-core-b {
+        animation: ffCorePulseB 10.5s ease-in-out infinite;
+      }
+
+      .ff-liquid-aurora-sweep {
+        animation: ffAuroraSweep 10s linear infinite;
+        mix-blend-mode: screen;
+      }
+
+      .dark .ff-liquid-aurora-sweep {
+        mix-blend-mode: plus-lighter;
+      }
+
+      .ff-liquid-orbit {
+        animation: ffOrbitSpin 26s linear infinite;
+      }
+
+      .ff-liquid-orbit.reverse {
+        animation: ffOrbitSpinReverse 34s linear infinite;
+      }
+
+      .ff-liquid-orbit-dot {
+        animation: ffOrbitDotPulse 3.6s ease-in-out infinite;
+      }
+
+      .ff-liquid-auth-focus {
+        animation: ffCorePulseA 8.5s ease-in-out infinite;
+      }
+
+      .ff-liquid-auth-focus-b {
+        animation: ffCorePulseB 10.5s ease-in-out infinite;
+      }
+
+      .ff-auth-vignette {
+        background: radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, 0.58) 100%);
+      }
+
+      .dark .ff-auth-vignette {
+        background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.72) 100%);
+      }
+
+      .ff-auth-beam {
+        animation: ffCardBeam 8s linear infinite;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ff-liquid-top-right,
+        .ff-liquid-left-ribbon,
+        .ff-liquid-right-blob,
+        .ff-liquid-bottom-wave,
+        .ff-liquid-left-line,
+        .ff-liquid-ambient-a,
+        .ff-liquid-ambient-b,
+        .ff-liquid-core-a,
+        .ff-liquid-core-b,
+        .ff-liquid-aurora-sweep,
+        .ff-liquid-orbit,
+        .ff-liquid-orbit-dot,
+        .ff-liquid-auth-focus,
+        .ff-liquid-auth-focus-b,
+        .ff-auth-beam {
+          animation: none !important;
+        }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.95.3",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "vite": "https://esm.sh/vite@^7.3.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-[#F2F2F7] dark:bg-black text-slate-800 dark:text-slate-100 select-none antialiased transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

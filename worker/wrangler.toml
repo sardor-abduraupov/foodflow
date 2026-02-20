@@ -1,0 +1,16 @@
+name = "foodflow-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "*"
+GEMINI_USAGE_MODE = "free"
+GEMINI_MAX_REQUESTS_PER_MINUTE = "40"
+GEMINI_MAX_CONCURRENT = "2"
+GEMINI_RATE_LIMIT_COOLDOWN_MS = "25000"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "foodflow"
+database_id = "79e3aed6-779e-40d8-854d-067837b4dca5"
+migrations_dir = "migrations"

@@ -1,0 +1,15 @@
+{
+  "name": "foodflow-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.toml",
+    "deploy": "wrangler deploy --config wrangler.toml",
+    "db:create": "wrangler d1 create foodflow --config wrangler.toml",
+    "db:migrate:local": "wrangler d1 migrations apply foodflow --local --config wrangler.toml",
+    "db:migrate:remote": "wrangler d1 migrations apply foodflow --remote --config wrangler.toml"
+  },
+  "devDependencies": {
+    "wrangler": "^4.64.0"
+  }
+}

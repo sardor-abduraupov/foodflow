@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FoodFlow">
+  <defs>
+    <linearGradient id="ff-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#ff-g)"/>
+  <path d="M22 20h20v28H22z" fill="#fff" fill-opacity="0.92"/>
+  <path d="M22 27h20" stroke="#8b5cf6" stroke-width="3"/>
+  <circle cx="32" cy="40" r="4" fill="#22d3ee"/>
+</svg>

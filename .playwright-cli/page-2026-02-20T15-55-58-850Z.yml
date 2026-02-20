@@ -1,0 +1,179 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]: Text to Speech | ElevenLabs
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - link "Skip to content" [ref=e10] [cursor=pointer]:
+        - /url: "#content"
+      - generic [ref=e11]:
+        - img [ref=e17]
+        - navigation [ref=e43]:
+          - button "Platform switcher. Click to switch platforms." [ref=e46] [cursor=pointer]:
+            - generic [ref=e48]:
+              - img "ElevenCreative" [ref=e52]
+              - generic [ref=e53]:
+                - paragraph [ref=e54]: ElevenCreative
+                - img [ref=e56]
+          - generic [ref=e59]:
+            - list "Main navigation" [ref=e62]:
+              - listitem [ref=e63]:
+                - list [ref=e64]:
+                  - listitem [ref=e65]:
+                    - link "Home" [ref=e67] [cursor=pointer]:
+                      - /url: /app/home
+                      - generic [ref=e69]:
+                        - img [ref=e71]
+                        - paragraph [ref=e74]: Home
+                  - listitem [ref=e75]:
+                    - generic [ref=e76]:
+                      - link "Voices" [ref=e77] [cursor=pointer]:
+                        - /url: /app/voice-library
+                        - generic [ref=e79]:
+                          - img [ref=e81]
+                          - paragraph [ref=e87]: Voices
+                      - button "Create a voice" [ref=e89] [cursor=pointer]:
+                        - img [ref=e91]
+                  - listitem [ref=e92]:
+                    - link "Files" [ref=e94] [cursor=pointer]:
+                      - /url: /app/files
+                      - generic [ref=e96]:
+                        - img [ref=e98]
+                        - paragraph [ref=e101]: Files
+              - listitem "Playground" [ref=e102]:
+                - heading "Playground" [level=2] [ref=e103]
+                - list [ref=e104]:
+                  - listitem [ref=e105]:
+                    - link "Text to Speech" [ref=e107] [cursor=pointer]:
+                      - /url: /app/speech-synthesis/text-to-speech
+                      - generic [ref=e109]:
+                        - img [ref=e111]
+                        - paragraph [ref=e116]: Text to Speech
+                  - listitem [ref=e117]:
+                    - link "Voice Changer" [ref=e119] [cursor=pointer]:
+                      - /url: /app/speech-synthesis/speech-to-speech
+                      - generic [ref=e121]:
+                        - img [ref=e123]
+                        - paragraph [ref=e128]: Voice Changer
+                  - listitem [ref=e129]:
+                    - link "Voice Isolator" [ref=e131] [cursor=pointer]:
+                      - /url: /app/voice-isolator
+                      - generic [ref=e133]:
+                        - img [ref=e135]
+                        - paragraph [ref=e139]: Voice Isolator
+                  - listitem [ref=e140]:
+                    - link "Sound Effects" [ref=e142] [cursor=pointer]:
+                      - /url: /app/sound-effects
+                      - generic [ref=e144]:
+                        - img [ref=e146]
+                        - paragraph [ref=e149]: Sound Effects
+                  - listitem [ref=e150]:
+                    - link "Music" [ref=e152] [cursor=pointer]:
+                      - /url: /app/music
+                      - generic [ref=e154]:
+                        - img [ref=e156]
+                        - paragraph [ref=e159]: Music
+                  - listitem [ref=e160]:
+                    - link "Image & Video New" [ref=e162] [cursor=pointer]:
+                      - /url: /app/image-video
+                      - generic [ref=e164]:
+                        - img [ref=e166]
+                        - generic [ref=e173]:
+                          - paragraph [ref=e174]: Image & Video
+                          - generic [ref=e175]: New
+                  - listitem [ref=e176]:
+                    - link "Templates" [ref=e178] [cursor=pointer]:
+                      - /url: /app/templates
+                      - generic [ref=e180]:
+                        - img [ref=e182]
+                        - paragraph [ref=e186]: Templates
+              - listitem "Products" [ref=e187]:
+                - heading "Products" [level=2] [ref=e188]
+                - list [ref=e189]:
+                  - listitem [ref=e190]:
+                    - link "Studio" [ref=e192] [cursor=pointer]:
+                      - /url: /app/studio
+                      - generic [ref=e194]:
+                        - img [ref=e196]
+                        - paragraph [ref=e200]: Studio
+                  - listitem [ref=e201]:
+                    - link "Audiobooks New" [ref=e203] [cursor=pointer]:
+                      - /url: /app/audiobooks
+                      - generic [ref=e205]:
+                        - img [ref=e207]
+                        - generic [ref=e210]:
+                          - paragraph [ref=e211]: Audiobooks
+                          - generic [ref=e212]: New
+                  - listitem [ref=e213]:
+                    - link "Dubbing" [ref=e215] [cursor=pointer]:
+                      - /url: /app/dubbing
+                      - generic [ref=e217]:
+                        - img [ref=e219]
+                        - paragraph [ref=e223]: Dubbing
+                  - listitem [ref=e224]:
+                    - link "Speech to Text" [ref=e226] [cursor=pointer]:
+                      - /url: /app/speech-to-text
+                      - generic [ref=e228]:
+                        - img [ref=e230]
+                        - paragraph [ref=e234]: Speech to Text
+                  - listitem [ref=e235]:
+                    - link "Audio Native" [ref=e237] [cursor=pointer]:
+                      - /url: /app/audio-native
+                      - generic [ref=e239]:
+                        - img [ref=e241]
+                        - paragraph [ref=e246]: Audio Native
+                  - listitem [ref=e247]:
+                    - link "Productions" [ref=e249] [cursor=pointer]:
+                      - /url: /app/productions
+                      - generic [ref=e251]:
+                        - img [ref=e253]
+                        - paragraph [ref=e260]: Productions
+            - list [ref=e264]:
+              - listitem [ref=e265]:
+                - link "Developers" [ref=e267] [cursor=pointer]:
+                  - /url: /app/developers
+                  - generic [ref=e269]:
+                    - img [ref=e271]
+                    - paragraph [ref=e274]: Developers
+    - generic [ref=e275]:
+      - generic [ref=e279]:
+        - generic [ref=e280]:
+          - paragraph [ref=e281]: Calling assistant
+          - paragraph [ref=e284]: Disconnected
+        - button "End call" [disabled] [ref=e286]:
+          - img [ref=e287]
+      - generic [ref=e290]:
+        - banner [ref=e291]:
+          - generic [ref=e292]:
+            - button [ref=e293]:
+              - img [ref=e294]
+            - paragraph [ref=e299]: Text to Speech
+            - generic [ref=e300]:
+              - generic [ref=e302]:
+                - button "Feedback" [ref=e303] [cursor=pointer]
+                - link "Docs" [ref=e304] [cursor=pointer]:
+                  - /url: https://elevenlabs.io/docs/product-guides/playground/text-to-speech
+                - button "Talk to El" [ref=e306] [cursor=pointer]:
+                  - img [ref=e307]
+                  - generic [ref=e309]: Talk to El
+              - button "Files" [ref=e310] [cursor=pointer]:
+                - img [ref=e311]
+              - button "Notifications" [ref=e313] [cursor=pointer]:
+                - img [ref=e315]
+              - button "Your profile" [ref=e318] [cursor=pointer]:
+                - generic [ref=e320]:
+                  - generic [ref=e321]:
+                    - progressbar [ref=e322]:
+                      - img [ref=e323]
+                    - progressbar [ref=e326]:
+                      - img [ref=e327]
+                  - img "Sardor Abduraupov" [ref=e331]
+        - main [ref=e333]
+  - status [ref=e334]
+  - iframe [ref=e335]:
+    
+  - generic:
+    - region "Notifications"
+    - region "Notifications"
+    - region "Notifications"
+    - region "Notifications"
+    - region "Notifications"
+    - region "Notifications"
